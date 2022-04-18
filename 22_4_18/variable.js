@@ -9,6 +9,32 @@ alert("start javaScript!!");
     16진수
 */
 
+
+const tldms = prompt("정답을 입력하세요",)
+
+console.log(tldms)
+parseInt(tldms)
+
+let num = 255;
+console.log(num.toString(16))
+
+let randomNum = Math.random() * 10;    //0.0 ~ 1.0 사이의 랜덤한 값(난수)
+console.log(randomNum)
+
+console.log(Math.floor(randomNum));      // 버림
+console.log(Math.ceil(randomNum));       // 올림        
+console.log(Math.round(randomNum));      // 반올림
+
+/*
+    실습.
+    프로그램이 3 ~ 10 사이의 랜덤한 값을 지정한다.
+    값을 하나 입력 받아서 정답인지 아닌지 출력해준다.
+*/
+let test = Math.random() * 10;
+console.log(test)
+
+
+
 // 변수명 이름 규칙
 /*
 1. 알파벳, _, -, 숫자 (특수문자, 영어 외 언어 X)
@@ -19,7 +45,6 @@ alert("start javaScript!!");
 */
 
 
-console.log(varName); // 호이스팅
 var varName = "varName";     
 console.log(varName)       //가장 오래된 버전에서 사용하는 변수 타입
 
@@ -33,5 +58,5 @@ const constName = "constName";      // 값이 수정될 일이 없는 변수
 // 게임에서 1스테이지 맴의 크기
 // 1스테이지 보스 이름
 // document 를 변수로 선언할때
-constName = "kjh";
+// constName = "kjh";
 console.log(constName); 
