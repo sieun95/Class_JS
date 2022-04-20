@@ -3,10 +3,11 @@
     document
     context
 */
-
+// 캔버스 설정
 const canvas = document.getElementById('myCanvas');
 const context = canvas.getContext('2d');
 
+// arc(공) 설정
 const arcRadius = 20;
 let arcPosX = canvas.width / 2 + 150;         // 다른언어는 멤버변수가 들어있어서 오타시 잡아줌  
 let arcPosY = canvas.height / 2;
@@ -20,7 +21,7 @@ let ball = {
     top:0, 
     bottom:0,
 };
-
+// bar 설정
 const barWidth = 100;
 const barHight = 20; 
 let barPosX = canvas.width / 2 - barWidth / 2;
@@ -33,6 +34,18 @@ let paddle = {
     top:0, 
     bottom:0,
 }
+// 벽돌 설정
+let brick = {
+    left:0, right:0, top:0, bottom:0,
+    column:0, row:0,
+}
+
+const brickWidth = 50; // 간격 10
+const brickHeight = 25; // 간격 5
+const brickRow = 4;
+const brickCol = 5;
+let bricks = [];
+
 
 // let recPosX = canvas.width / 2 + 150;         // 다른언어는 멤버변수가 들어있어서 오타시 잡아줌  
 // let recPosY = canvas.height / 2;
@@ -80,8 +93,15 @@ function keyDownEventHandler(e)
 
 function keyUpEventHandler(e)
 {
-    
+
 }
+
+/* update : 데이터 수정 (도형의 위치 이동)
+ * ★ 로직
+ * 문제: 도형의 포지션에 따라 왔다 갔다 움직인다
+ * 핵심: 방향에 영향을 주는 변수(=moveDir) 설정
+ * 조건: if 조건에 맞춰 방향 변수에 + or - 를 결정하고 최종 return에 +=로 증감 표시
+ */
 
 
 
@@ -161,13 +181,14 @@ function isCollisionRectToRect(rectA, rectB)
 //     recPosX += recMoveDirX * recMoveSpd;       
 // }
 
+// draw : 화면 클리어 및 여러 가지 도형 그리는 함수
 function draw()
 {
     // 화면 클리어
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // 다른 도형 그리기
-    
+    drawBricks();
     drawArc();
     drawRect();
 }
@@ -183,7 +204,7 @@ function draw()
 //     context.closePath();
 // }
 
-
+//  모양: circle
 function drawArc()                  // 컴파일시 실행준비 함수는 한번씩만 작동하는게 좋다 - 기능하나만 구현하는게 최고다
 {    
     context.beginPath();
@@ -194,7 +215,7 @@ function drawArc()                  // 컴파일시 실행준비 함수는 한�
 
     context.closePath();
 }
-
+//  모양: rectangle
 function drawRect()
 {
     context.beginPath();
@@ -206,7 +227,35 @@ function drawRect()
 
     context.closePath();
 }
+// 벽돌 설정
+function setBricks() {
+    for (let i = 0; i < brickRow; i++) {
+        bricks[i] = [];
+        for (let j = 0; j < brickCol; j++) {
+            bricks[i][j] = {
+                left: 55 + j * (brickWidth + 10),
+                right: 55 + j * (brickWidth + 10) + 50,
+                top: 30 + i * (brickHeight + 5),
+                bottom: 30 + i * (brickHeight + 5) + 25,
+                column: i, row: j
+            };
+        }
+    }
+}
 
+function drawBricks() {
+    context.beginPath();
+    for (let i = 0; i < brickRow; i++) {
+        for (let j = 0; j < brickCol; j++) {
+            context.rect(bricks[i][j].left, bricks[i][j].top, brickWidth, brickHeight);
+            context.fillStyle = 'blue';
+            context.fill();
+        }
+    }
+
+    context.closePath();
+}
+
+setBricks();
 setInterval(update, 10);
-// setInterval(updateRec, 10);
 setInterval(draw, 10);           // 런타임시 컴피알된 함수 실행

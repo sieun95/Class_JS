@@ -1,0 +1,10 @@
+.myDiv canvas {
+    background-color: lightgray;
+    text-align: center;
+}
+.myDiv button {
+    background-color: lightsalmon;
+}
+.myDiv input {
+    /* background-color: #ffffff; */
+}
