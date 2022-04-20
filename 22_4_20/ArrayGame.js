@@ -35,6 +35,9 @@ const canvas = document.getElementById('myCanvas');
 const context = canvas.getContext("2d");
 
 
+let column = prompt("가로");
+let row = prompt("세로")
+
 function bricksColumn() {
     let column = document.getElementById('column');
     console.log(column.value)
@@ -63,8 +66,8 @@ let barPosY = canvas.height - barHeight;
 // * 벽돌관련
 const brickWidth = 50; //간격은 10
 const brickHeight = 25; // 간격 5
-const brickColumn = 2; //열
-const brickRow = 2; //행
+const brickColumn = column; //열
+const brickRow = row; //행
 let bricks = [];
 let bricksCount = brickColumn * brickRow
 
