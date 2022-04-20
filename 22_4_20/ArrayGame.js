@@ -1,6 +1,5 @@
 /*
   배열
-
 */
 
 // let testArray=[1,2,3,4,5];
@@ -41,7 +40,7 @@ function bricksColumn() {
     console.log(column.value)
 }
 
-
+// * ball 위치 스피드
 
 let arcPosX = 200;
 let arcPosY = 370;
@@ -49,7 +48,7 @@ let arcMoveDirX = -1;
 let arcMoveDirY = -1;
 let arcMoveSpd = 3;
 
-
+// * 
 let rectPosX = canvas.width / 2 - 50;
 let rectPosY = canvas.height - 20;
 let rectMoveDirX = 1;
@@ -61,13 +60,12 @@ const arcRadius = 10;
 let barPosX = canvas.width / 2 - barWidth / 2;
 let barPosY = canvas.height - barHeight;
 
-//벽돌관련
+// * 벽돌관련
 const brickWidth = 50; //간격은 10
 const brickHeight = 25; // 간격 5
 const brickColumn = 2; //열
 const brickRow = 2; //행
 let bricks = [];
-
 let bricksCount = brickColumn * brickRow
 
 
@@ -79,11 +77,8 @@ let paddle = {
     left:barPosX, right:barPosX + barWidth, top:380, bottom:400,
 };
 
-
-
-//키 함수 추가
+// * 키 함수 추가
 document.addEventListener('keydown', keyDownEventHandler);
-// document.addEventListener('keyup', keyUpEventHandler);
 
 function setBricks() {
 
@@ -124,12 +119,14 @@ function gameWin(){
         alert("win")
     }
 }
+
 function gameOver(){
     if(arcPosY > 370) {
         window.location.reload(true)
         alert("over")
     }
 }
+
 let setStart = true;
 
 function keyDownEventHandler(e) {
@@ -162,12 +159,10 @@ function keyDownEventHandler(e) {
     paddle.bottom = barPosY + barHeight;
 }
 
-//실습. 동그라미가 오른쪽으로 움직이다가 캔버스 끝에 닿으면 왼쪽으로 이동
-
 context.clearRect(0, 0, canvas.width, canvas.height) //화면을 네모난 모양
 
 function update() {
-//arcposx는 원의 중심이다.
+// * arcPosx는 원의 중심이다.
     if(keyDownEventHandler)
     {
         if(arcPosX - arcRadius < 0) {
@@ -184,20 +179,19 @@ function update() {
     
         arcPosX += arcMoveDirX * arcMoveSpd;
         arcPosY += arcMoveDirY * arcMoveSpd;
-        // arcPosX = arcPosX + arcMoveDir + arcMoveSpd;
     
         ball.left = arcPosX -arcRadius;
         ball.right = arcPosX +arcRadius;
         ball.top = arcPosY - arcRadius;
         ball.bottom = arcPosY +arcRadius;
     
-        //충돌확인
+        // * 충돌확인
         if(isCollisionRectToRect(ball, paddle)) {
             arcMoveDirY = -1;
             arcPosY = paddle.top - arcRadius;
         }
     
-        // 벽돌과 공 충돌확인
+        // * 벽돌과 공 충돌확인
         for(let i = 0; i < brickRow; i++){
             for(let j = 0; j < brickColumn; j++) {
                 if(bricks[i][j].isAlive && isCollisionRectToRect(ball, bricks[i][j])) {
@@ -213,7 +207,6 @@ function update() {
         gameWin()
         gameOver()
     }
-   
 }
 
 function isCollisionRectToRect(rectA, rectB) {
@@ -231,15 +224,13 @@ function isCollisionRectToRect(rectA, rectB) {
     return true; // 겹친다
 }
 
-
 function draw() {
-    //화면 클리어
+    // *화면 클리어
     context.clearRect(0, 0, canvas.width, canvas.height) //사각형 지우기
 
     drawRect();
     drawArc();
     drawBricks();
-
 }
 
 //* bar 부분
@@ -249,8 +240,7 @@ function drawRect() {
     context.fillStyle = 'red';
     context.fill();
     context.closePath();
-    
-    }
+}
 
 //* ball 부분
 
@@ -263,12 +253,5 @@ function drawArc() {
     context.closePath();
 }
 
-// function start(e){
-//     if(e.key == " "){
-//         alert("start")
-//     }
-// }
-
 setBricks();
-// setInterval(update, 10);
 setInterval(draw, 10)
