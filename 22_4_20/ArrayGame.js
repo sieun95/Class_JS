@@ -43,6 +43,7 @@ function bricksColumn() {
     console.log(column.value)
 }
 
+
 // * ball 위치 스피드
 
 let arcPosX = 200;
@@ -88,7 +89,8 @@ function setBricks() {
     for(let i = 0; i < brickRow; i++){ //위에서부터 5줄
         bricks[i] = [];
         for(let j = 0; j < brickColumn; j++){  //가로로 4개
-            bricks[i][j] = {//todo: right = left+ 50
+            bricks[i][j] = {
+                //todo: right = left+ 50
                 left:55 + j * (brickWidth + 10),
                 right:55 + j * (brickWidth + 10) + 50,
                 top:30 + i * (brickHeight + 5),
