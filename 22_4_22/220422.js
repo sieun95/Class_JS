@@ -1,12 +1,9 @@
 /*
 *비동기 처리
     Promise
-
-
-
+    async
     동기 처리
 */
-
 
 //* 동기
 
@@ -32,13 +29,21 @@
 //async await
 
 async function asyncTimeoutCheckAdult(age, timeout) {
-    if (age >= 20) {
-        setTimeout(() => {
-            console.log(`asyncTimeoutCheckAult()`)
-            return age;
-        }, timeout);
-    }
-    else throw new Error(age);
+    return new Promise((resolve, reject) => {
+        if (age >= 20) {
+            setTimeout(() => {
+                console.log(`asyncTimeoutCheckAult()`)
+                resolve(age);
+            }, timeout);
+        }
+    })
+    // if (age >= 20) {
+    //     setTimeout(() => {
+    //         console.log(`asyncTimeoutCheckAult()`)
+    //         return age;
+    //     }, timeout);
+    // }
+    // else throw new Error(age);
     // else throw new Error(age);
     // else if(age < 20) return age;
     // else throw new Error(age); 
@@ -53,7 +58,7 @@ async function asyncCheckAdult(age) {
 }
 
 async function asyncCheckAdulet() {
-    await asyncTimeoutCheckAdult(100, 3000);
+    asyncTimeoutCheckAdult(100, 3000);
     const promiseCheckAdult = asyncCheckAdult(10);
     promiseCheckAdult.then((age) => {
         console.log(`${age} is adult!!`);
@@ -70,14 +75,8 @@ async function asyncCheckAdulet() {
 }
 
 asyncCheckAdulet();
-// await : async 함수가 종료될 때까지 기다린다.
-
- 
-
-  
-
-
-
+// await : 함수가 종료될 때까지 기다린다.
+// await 키워드 사용 함수의 종료를 기다리지 않고 다음 함수를 호출한다.
 
 // function asyncCheckAdult(age) {
 //     return new Promise((resolve, reject) => {
@@ -101,8 +100,6 @@ asyncCheckAdulet();
 //         console.log(`${age} is not adult!!`);
 //     });
 // }
-
-
 
 // const promise = new Promise((resolve, reject) => {          // * 인자이지만 resolve, reject는 함수의 이름
 /*
