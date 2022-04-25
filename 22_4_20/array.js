@@ -81,8 +81,7 @@ let paddle = {
     left:barPosX, right:barPosX + barWidth, top:380, bottom:400,
 };
 
-// * 키 함수 추가
-document.addEventListener('keydown', keyDownEventHandler);
+
 
 function setBricks() {
 
@@ -90,7 +89,6 @@ function setBricks() {
         bricks[i] = [];
         for(let j = 0; j < brickColumn; j++){  //가로로 4개
             bricks[i][j] = {
-                //todo: right = left+ 50
                 left:55 + j * (brickWidth + 10),
                 right:55 + j * (brickWidth + 10) + 50,
                 top:30 + i * (brickHeight + 5),
@@ -133,6 +131,9 @@ function gameOver(){
 }
 
 let setStart = true;
+
+// * 키 함수 추가
+document.addEventListener('keydown', keyDownEventHandler);
 
 function keyDownEventHandler(e) {
     if(e.key == " " && setStart){

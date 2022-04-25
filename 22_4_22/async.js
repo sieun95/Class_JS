@@ -9,8 +9,8 @@ const context = canvas.getContext("2d");
 
 
 // * 입력값 받아오기
-// let column = prompt("가로");
-// let row = prompt("세로")
+let column = prompt("가로");
+let row = prompt("세로")
 
 
 // * ball 위치 스피드
@@ -31,10 +31,10 @@ let barPosY = canvas.height - barHeight;
 // * 벽돌관련
 const brickWidth = 50; //간격은 10
 const brickHeight = 25; // 간격 5
-// const brickColumn = column; //열
-// const brickRow = row; //행
-const brickColumn = 1; //열
-const brickRow = 1; //행
+const brickColumn = column; //열
+const brickRow = row; //행
+// const brickColumn = 5; //열
+// const brickRow = 4; //행
 let bricks; //벽돌 전체
 let bricksCount = brickColumn * brickRow
 
@@ -172,7 +172,7 @@ function keyDownEventHandler(e) {
         return true
     }
 
-    if (e.keyCode == 37 || e. keyCode == 39) {
+    if (e.keyCode == 37 || e.keyCode == 39) {
         barPosX += barMove;
         paddle.left = barPosX;
         paddle.right = barPosX + barWidth;

@@ -57,7 +57,7 @@ let bricks = [];
 // let recPosY = canvas.height / 2;
 
 document.addEventListener('keydown', keyDownEventHandler);
-document.addEventListener('keyup', keyUpEventHandler);
+// document.addEventListener('keyup', keyUpEventHandler);
 
 function keyDownEventHandler(e)
 {
@@ -91,10 +91,6 @@ function keyDownEventHandler(e)
     paddle.bottom = barPosY + barHight;
 }
 
-function keyUpEventHandler(e)
-{
-
-}
 
 /* update : 데이터 수정 (도형의 위치 이동)
  * ★ 로직
@@ -166,21 +162,6 @@ function isCollisionRectToRect(rectA, rectB)
     return true;
 }
 
-
-// function updateRec()
-// {
-//     //데이터 수정 도형의 위치 이동
-//     if(recPosX < 0)
-//     {
-//         recMoveDirX = 1;
-//     }
-//     else if(recPosX > canvas.width)
-//     {
-//         recMoveDirX = -1;        
-//     } 
-//     recPosX += recMoveDirX * recMoveSpd;       
-// }
-
 // draw : 화면 클리어 및 여러 가지 도형 그리는 함수
 function draw()
 {
@@ -208,19 +189,18 @@ function draw()
 function drawArc()                  // 컴파일시 실행준비 함수는 한번씩만 작동하는게 좋다 - 기능하나만 구현하는게 최고다
 {    
     context.beginPath();
-
     context.arc(arcPosX, arcPosY, arcRadius, 0, 2 * Math.PI);
     context.fillStyle = 'green';
     context.fill();
-
     context.closePath();
 }
+
+
 //  모양: rectangle
 function drawRect()
 {
     context.beginPath();
 
-    // context.rect(canvas.width / 2 , canvas.heigh / 2, 100, 100);
     context.rect(barPosX , barPosY, barWidth, barHight);
     context.fillStyle = 'red';
     context.fill();
